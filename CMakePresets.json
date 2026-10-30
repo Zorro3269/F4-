@@ -1,0 +1,44 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}-CubeCLT",
+		    "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
+            "environment": {
+                "PATH": "D:/mc/cubeclt/STM32CubeCLT_1.22.0/GNU-tools-for-STM32/bin;D:/mc/cubeclt/STM32CubeCLT_1.22.0/Ninja/bin;$penv{PATH}"
+            },
+            "cacheVariables": {
+                "CMAKE_MAKE_PROGRAM": "D:/mc/cubeclt/STM32CubeCLT_1.22.0/Ninja/bin/ninja.exe",
+                "STM32_PROGRAMMER_CLI": "D:/mc/cubeclt/STM32CubeCLT_1.22.0/STM32CubeProgrammer/bin/STM32_Programmer_CLI.exe",
+                "OPENOCD_EXECUTABLE": "D:/open/DevEnv/openocd-v0.12.0-i686-w64-mingw32/bin/openocd.exe"
+            }
+        },
+        {
+            "name": "Debug",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "Release",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "Debug",
+            "configurePreset": "Debug"
+        },
+        {
+            "name": "Release",
+            "configurePreset": "Release"
+        }
+    ]
+}

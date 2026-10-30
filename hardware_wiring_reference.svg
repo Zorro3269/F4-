@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">STM32F407ZG OBD 主机接线参考</title>
+  <desc id="desc">展示 Explorer V3.5 主板与 ST-Link、ESP-01S、CAN 总线和可选 USART1 数据源的连接关系。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1420"/><stop offset="1" stop-color="#111f2b"/></linearGradient>
+    <linearGradient id="board" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#173344"/><stop offset="1" stop-color="#122633"/></linearGradient>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#4ce0b4"/></marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#ffb45e"/></marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#6ab6ff"/></marker>
+    <marker id="arrowBoth" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto-start-reverse"><path d="M0 0L9 4.5L0 9Z" fill="#ffd166"/></marker>
+    <style>
+      text{font-family:"Microsoft YaHei","Noto Sans CJK SC","Segoe UI",sans-serif;fill:#eaf2f7}
+      .title{font-size:34px;font-weight:700;letter-spacing:.5px}
+      .subtitle{font-size:16px;fill:#a9bdc9}
+      .panel{fill:#172531;stroke:#31495a;stroke-width:2}
+      .board{fill:url(#board);stroke:#4a8491;stroke-width:3}
+      .inner{fill:#10202a;stroke:#3a6473;stroke-width:2}
+      .device{fill:#1d303c;stroke:#5a7788;stroke-width:2}
+      .h{font-size:22px;font-weight:700}
+      .body{font-size:16px;fill:#d3e0e8}
+      .small{font-size:14px;fill:#a9bdc9}
+      .tiny{font-size:12px;fill:#a9bdc9}
+      .green{stroke:#4ce0b4;stroke-width:4;fill:none}
+      .orange{stroke:#ffb45e;stroke-width:4;fill:none}
+      .blue{stroke:#6ab6ff;stroke-width:4;fill:none}
+      .canh{stroke:#ffd166;stroke-width:4;fill:none}
+      .canl{stroke:#ce9fff;stroke-width:4;fill:none}
+      .mutedline{stroke:#5e7887;stroke-width:2;fill:none}
+      .labelbg{fill:#0d1922;stroke:#31495a;stroke-width:1}
+      .pill{fill:#203a47;stroke:#365a69;stroke-width:1}
+      .warn{fill:#322922;stroke:#d28c4c;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1600" height="1120" fill="url(#bg)"/>
+  <text x="60" y="56" class="title">STM32F407ZG 主机接线参考</text>
+  <text x="62" y="88" class="subtitle">Explorer V3.5 · 按当前项目引脚配置绘制 · 外接前请核对板卡丝印与对应版本原理图</text>
+  <rect x="1250" y="35" width="290" height="46" rx="23" class="pill"/>
+  <circle cx="1277" cy="58" r="8" fill="#4ce0b4"/>
+  <text x="1295" y="64" class="small">方向箭头表示信号流向</text>
+
+  <!-- Main development board -->
+  <rect x="525" y="135" width="550" height="650" rx="24" class="board"/>
+  <text x="800" y="176" text-anchor="middle" class="h">Explorer V3.5 主板</text>
+  <text x="800" y="201" text-anchor="middle" class="small">STM32F407ZG · 板上 LCD / 触摸 / 24C02 / CAN 收发器</text>
+
+  <rect x="675" y="265" width="280" height="170" rx="16" fill="#17212b" stroke="#76a9bb" stroke-width="3"/>
+  <text x="815" y="309" text-anchor="middle" class="h">STM32F407ZG</text>
+  <text x="815" y="340" text-anchor="middle" class="body">USART3：PB10 TX · PB11 RX</text>
+  <text x="815" y="369" text-anchor="middle" class="body">CAN1：PA12 TX · PA11 RX</text>
+  <text x="815" y="401" text-anchor="middle" class="small">SWD 调试 / 下载</text>
+
+  <rect x="555" y="505" width="225" height="125" rx="14" class="inner"/>
+  <text x="667" y="540" text-anchor="middle" class="h" font-size="18">板载显示与设置</text>
+  <text x="575" y="574" class="small">FSMC LCD + 触摸</text>
+  <text x="575" y="600" class="small">24C02 保存配置</text>
+  <text x="667" y="619" text-anchor="middle" class="tiny">正常无需另接外线</text>
+
+  <rect x="815" y="505" width="225" height="125" rx="14" class="inner"/>
+  <text x="927" y="540" text-anchor="middle" class="h" font-size="18">板载 CAN 收发器</text>
+  <text x="835" y="574" class="small">PA12 / CAN1_TX → TXD</text>
+  <text x="835" y="600" class="small">RXD → CAN1_RX / PA11</text>
+  <text x="927" y="619" text-anchor="middle" class="tiny">MCU 与收发器为板内连接</text>
+
+  <rect x="555" y="670" width="225" height="70" rx="12" class="inner"/>
+  <text x="667" y="700" text-anchor="middle" class="body" font-weight="700">板上 SWD 接口</text>
+  <text x="667" y="724" text-anchor="middle" class="small">SWDIO · SWCLK · GND</text>
+  <rect x="815" y="670" width="225" height="70" rx="12" class="inner"/>
+  <text x="927" y="700" text-anchor="middle" class="body" font-weight="700">主板供电入口</text>
+  <text x="927" y="724" text-anchor="middle" class="small">按板卡标注的输入供电</text>
+
+  <path d="M740 435L705 505" class="mutedline"/>
+  <path d="M890 435L930 505" class="mutedline"/>
+  <path d="M720 435L665 670" class="mutedline" stroke-dasharray="7 7"/>
+
+  <!-- ESP-01S -->
+  <rect x="60" y="195" width="390" height="275" rx="18" class="panel"/>
+  <text x="88" y="235" class="h">ESP-01S（外接）</text>
+  <text x="88" y="268" class="body"><tspan fill="#ffb45e" font-weight="700">ESP TX</tspan><tspan> → PB11 / USART3_RX</tspan></text>
+  <text x="88" y="299" class="body"><tspan fill="#4ce0b4" font-weight="700">ESP RX</tspan><tspan> ← PB10 / USART3_TX</tspan></text>
+  <text x="88" y="330" class="body">GND → 主板 GND（共地）</text>
+  <text x="88" y="361" class="body">VCC → 稳定 3.3 V 独立电源</text>
+  <text x="88" y="392" class="small">EN / CH_PD 拉高；RST 保持高电平</text>
+  <text x="88" y="418" class="small">GPIO0、GPIO2 正常启动时保持高电平</text>
+  <rect x="82" y="433" width="346" height="25" rx="8" fill="#3b2924"/>
+  <text x="255" y="451" text-anchor="middle" class="tiny" fill="#ffd1ad">不能接 5 V；供电建议留足 Wi-Fi 峰值电流余量</text>
+  <path d="M450 337H675" class="orange" marker-end="url(#arrowOrange)"/>
+  <path d="M675 383H450" class="green" marker-end="url(#arrowGreen)"/>
+  <rect x="477" y="307" width="183" height="25" rx="6" class="labelbg"/>
+  <text x="568" y="325" text-anchor="middle" class="tiny">ESP TX → MCU RX</text>
+  <rect x="477" y="390" width="183" height="25" rx="6" class="labelbg"/>
+  <text x="568" y="408" text-anchor="middle" class="tiny">MCU TX → ESP RX</text>
+
+  <!-- ST-Link -->
+  <rect x="60" y="535" width="390" height="235" rx="18" class="panel"/>
+  <text x="88" y="575" class="h">ST-Link（SWD 烧录）</text>
+  <text x="88" y="610" class="body">SWDIO → 主板 SWDIO</text>
+  <text x="88" y="642" class="body">SWCLK → 主板 SWCLK</text>
+  <text x="88" y="674" class="body">GND → 主板 GND</text>
+  <text x="88" y="706" class="small">NRST 可选；VTref 按 ST-Link 要求接目标 3.3 V 参考</text>
+  <path d="M450 660H555" class="blue" marker-end="url(#arrowBlue)"/>
+  <rect x="458" y="626" width="88" height="25" rx="6" class="labelbg"/>
+  <text x="502" y="644" text-anchor="middle" class="tiny">SWD 线束</text>
+
+  <!-- Optional legacy UART source -->
+  <rect x="1160" y="180" width="380" height="245" rx="18" class="panel"/>
+  <text x="1188" y="220" class="h">可选：旧串口数据源</text>
+  <text x="1188" y="254" class="body">外部设备 TX → PA10 / USART1_RX</text>
+  <text x="1188" y="286" class="body">外部设备 GND → 主板 GND</text>
+  <text x="1188" y="320" class="small">460800 baud · 8N1 · 仅需要兼容旧帧时连接</text>
+  <text x="1188" y="350" class="small">PA9 / USART1_TX 当前不需接线</text>
+  <text x="1188" y="382" class="tiny">串口帧格式：[LOAD=… TMP=… RPM=… SPD=… MAF=… THR=…]</text>
+  <path d="M1160 303H955" class="orange" marker-end="url(#arrowOrange)"/>
+  <rect x="988" y="273" width="157" height="25" rx="6" class="labelbg"/>
+  <text x="1066" y="291" text-anchor="middle" class="tiny">TX → PA10 / RX</text>
+
+  <!-- Vehicle CAN -->
+  <rect x="1160" y="490" width="380" height="230" rx="18" class="panel"/>
+  <text x="1188" y="530" class="h">CAN 总线 / ECU</text>
+  <text x="1188" y="564" class="body">板上 CANH ↔ 车辆 / 测试设备 CANH</text>
+  <text x="1188" y="596" class="body">板上 CANL ↔ 车辆 / 测试设备 CANL</text>
+  <text x="1188" y="630" class="small">使用主板 CAN 接口（板载收发器之后）</text>
+  <text x="1188" y="660" class="small">按总线拓扑处理终端；仅总线两端终端匹配</text>
+  <text x="1188" y="690" class="small" fill="#ffb99c">严禁将 CANH / CANL 直连 MCU 引脚</text>
+  <path d="M1040 552H1160" class="canh" marker-start="url(#arrowBoth)" marker-end="url(#arrowBoth)"/>
+  <path d="M1040 604H1160" class="canl" marker-start="url(#arrowBoth)" marker-end="url(#arrowBoth)"/>
+  <rect x="1060" y="520" width="80" height="24" rx="6" class="labelbg"/>
+  <text x="1100" y="537" text-anchor="middle" class="tiny">CANH</text>
+  <rect x="1060" y="612" width="80" height="24" rx="6" class="labelbg"/>
+  <text x="1100" y="629" text-anchor="middle" class="tiny">CANL</text>
+
+  <!-- Bottom warnings and expected topology -->
+  <rect x="60" y="825" width="1480" height="230" rx="20" class="warn"/>
+  <text x="92" y="870" class="h" fill="#ffd1ad">供电与连接注意</text>
+  <line x1="800" y1="890" x2="800" y2="1022" stroke="#70523b" stroke-width="2"/>
+  <text x="95" y="912" class="body">• F407 主板按板卡规定的电源入口单独供电。</text>
+  <text x="95" y="948" class="body">• ESP-01S 使用稳定 3.3 V 电源；ESP / ST-Link / 外部串口设备与主板共地。</text>
+  <text x="95" y="984" class="body">• ST-Link 的 3.3 V 通常只作目标电压检测；不要与主板电源盲目并接。</text>
+  <text x="95" y="1020" class="small">• UART 引脚为 3.3 V 逻辑；外设若为 5 V 电平，先确认电平兼容再连接。</text>
+  <text x="835" y="912" class="body">• CANH / CANL 接板载 CAN 收发器的外部总线端，不接 MCU 的 PA11 / PA12。</text>
+  <text x="835" y="948" class="body">• 无 ECU 响应时，屏幕出现“--”或 CAN WAITING 属于可能的等待状态。</text>
+  <text x="835" y="984" class="body">• USART1 仅收到旧帧时，当前代码的 LCD 数值仍可能受 CAN 状态条件影响。</text>
+  <text x="835" y="1020" class="small">接线图为逻辑参考，不替代板卡原理图、丝印和电源规格核对。</text>
+
+  <text x="60" y="1090" class="tiny">依据：项目当前 USART3 / USART1 / CAN1 引脚配置及 Explorer V3.5 板载外设假设。上电前再次核对实物版本。</text>
+</svg>
